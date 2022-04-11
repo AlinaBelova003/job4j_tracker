@@ -3,7 +3,7 @@ package ru.job4j.pojo;
 public class Library {
     public static void main(String[] args) {
         Book bible = new Book("Bible", 1000);
-        Book cleanCod = new Book("Clean Cod", 300);
+        Book cleanCod = new Book("Clean Code", 300);
         Book javaTask = new Book("Java Task", 500);
         Book harryPotter = new Book("Harry Potter", 400);
         Book[] book = new Book[4];
@@ -29,7 +29,7 @@ public class Library {
         System.out.println("Цикл на утверждение равенста строки массива");
         for (int index = 0; index < book.length; index++) {
             Book br = book[index];
-            if (book[index].equals(cleanCod)) {
+            if ("Clean Code".equals(br.getName())) {
                 Book bri = book[index];
                 System.out.println(bri.getName() + " - " + bri.getCount());
             }
