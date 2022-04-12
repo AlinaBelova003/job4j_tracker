@@ -30,8 +30,7 @@ public class Library {
         for (int index = 0; index < book.length; index++) {
             Book br = book[index];
             if ("Clean Code".equals(br.getName())) {
-                Book bri = book[index];
-                System.out.println(bri.getName() + " - " + bri.getCount());
+                System.out.println(br.getName() + " - " + br.getCount());
             }
         }
     }
