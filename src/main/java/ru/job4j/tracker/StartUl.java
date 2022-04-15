@@ -17,6 +17,17 @@ public class StartUl {
                 tracker.add(item);
             } else if (select == 6) {
                 run = false;
+
+            } else if (select == 1) {
+                System.out.println("=== Show all items ===");
+                Item[] items = tracker.findAll();
+                if (items.length > 0) {
+                    for (Item item : items) {
+                        System.out.println(item);
+                    }
+                } else {
+                    System.out.println("Хранилище еще не содержит заявок");
+                }
             }
         }
     }
@@ -32,10 +43,9 @@ public class StartUl {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[]args) {
         Scanner scanner = new Scanner(System.in);
         Tracker tracker = new Tracker();
         new StartUl().init(scanner, tracker);
-
     }
 }
