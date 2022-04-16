@@ -15,10 +15,7 @@ public class StartUl {
                 String name = scanner.nextLine();
                 Item item = new Item(name);
                 tracker.add(item);
-            } else if (select == 6) {
-                run = false;
-
-            } else if (select == 1) {
+            }  else if (select == 1) {
                 System.out.println("=== Show all items ===");
                 Item[] items = tracker.findAll();
                 if (items.length > 0) {
@@ -28,6 +25,8 @@ public class StartUl {
                 } else {
                     System.out.println("Хранилище еще не содержит заявок");
                 }
+            } else if (select == 6) {
+                run = false;
             }
         }
     }
