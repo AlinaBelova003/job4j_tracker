@@ -1,7 +1,7 @@
 package ru.job4j.tracker;
 
 public class StartUl {
-    public static void init(Input input, Tracker tracker) {
+    public void init(Input input, Tracker tracker) {
         boolean run = true;
         while (run) {
             this.showMenu();
