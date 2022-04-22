@@ -34,9 +34,9 @@ public class StartUl {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new CreateAction(output), new AllItemAction(),
+                new CreateAction(output), new AllItemAction(output),
                 new EditAction(output), new DeleteAction(output),
-                new FindIdAction(), new FindNameAction(), new Exit()
+                new FindIdAction(output), new FindNameAction(output), new Exit()
         };
         new StartUl(output).init(input, tracker, actions);
     }
