@@ -9,7 +9,7 @@ public class CreateAction implements UserAction {
 
     @Override
     public String name() {
-        return "Create new Item";
+        return "Create";
     }
 
     @Override
