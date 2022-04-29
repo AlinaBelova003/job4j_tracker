@@ -8,9 +8,8 @@ public class UserStore {
                 rsl = user;
                 break;
             }
-            if (rsl == null) {
-                throw new UserNotFoundException("Пользователь не найден.");
-            }
+         } if (rsl == null) {
+            throw new UserNotFoundException("Пользователь не найден.");
         }
         return rsl;
     }
