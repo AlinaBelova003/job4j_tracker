@@ -33,12 +33,13 @@ public class ValidateInputTest {
     public void whenInvalidMoreRightInput() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"1", "1", "1", "1"}
+                new String[] {"1", "6"}
         );
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu:");
+        int selectedSix = input.askInt("Enter menu:");
         assertThat(selected, is(1));
-        assertThat(selected, is(1));
+        assertThat(selectedSix, is(6));
     }
 
     @Test
