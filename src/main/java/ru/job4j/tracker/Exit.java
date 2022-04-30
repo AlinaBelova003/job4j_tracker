@@ -9,7 +9,7 @@ public class Exit implements UserAction {
 
     @Override
     public String name() {
-        return "Exist Program";
+        return "Exit Program";
     }
 
     @Override

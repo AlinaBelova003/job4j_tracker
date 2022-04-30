@@ -74,7 +74,7 @@ public class StartUlTest {
                         + "0. Show all items" + ln
                         + "1. Exit Program" + ln
                         + "=== Show all items ===" + ln
-                        + "А сюда что?" + ln
+                        + one.toString() + ln
                         + "Menu:" + ln
                         + "0. Show all items" + ln
                         + "1. Exit Program" + ln
@@ -102,8 +102,7 @@ public class StartUlTest {
                         + "0. Find item by name" + ln
                         + "1. Exit Program" + ln
                         + "=== Find items by name ===" + ln
-                        + "Enter name: " + ln
-                        + "Вот результат откуда брать?" + ln
+                        + one.toString() + ln
                         + "Menu:" + ln
                         + "0. Find item by name" + ln
                         + "1. Exit Program" + ln
@@ -131,8 +130,7 @@ public class StartUlTest {
                         + "0. Find item by id" + ln
                         + "1. Exit Program" + ln
                         + "=== Find item by id ===" + ln
-                        + "Enter id: " + ln
-                        + "Результат" + ln
+                        + one.toString() + ln
                         + "Menu:" + ln
                         + "0. Find item by id" + ln
                         + "1. Exit Program" + ln
