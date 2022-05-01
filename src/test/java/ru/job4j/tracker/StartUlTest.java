@@ -74,7 +74,7 @@ public class StartUlTest {
                         + "0. Show all items" + ln
                         + "1. Exit Program" + ln
                         + "=== Show all items ===" + ln
-                        + one.toString() + ln
+                        + one + ln
                         + "Menu:" + ln
                         + "0. Show all items" + ln
                         + "1. Exit Program" + ln
@@ -102,7 +102,7 @@ public class StartUlTest {
                         + "0. Find item by name" + ln
                         + "1. Exit Program" + ln
                         + "=== Find items by name ===" + ln
-                        + one.toString() + ln
+                        + one + ln
                         + "Menu:" + ln
                         + "0. Find item by name" + ln
                         + "1. Exit Program" + ln
