@@ -18,6 +18,14 @@ public final class SingleTracker {
         return tracker.add(item);
     }
 
+    public Item findAll() {
+        return null;
+    }
+
+    public Item findByName(String kay) {
+        return null;
+    }
+
     public Item findById(int id) {
         return null;
     }
