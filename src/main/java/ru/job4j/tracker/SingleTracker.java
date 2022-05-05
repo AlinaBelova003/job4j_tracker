@@ -18,27 +18,23 @@ public final class SingleTracker {
         return tracker.add(item);
     }
 
-    public Item findAll() {
-        return null;
+    public Item[] findAll() {
+        return tracker.findAll();
     }
 
-    public Item findByName(String kay) {
-        return null;
+    public Item[] findByName(String kay) {
+        return tracker.findByName(kay);
     }
 
     public Item findById(int id) {
-        return null;
-    }
-
-    public Item indexOf(int id) {
-        return null;
+        return tracker.findById(id);
     }
 
     public boolean replace(int id, Item item) {
         return tracker.replace(id, item);
     }
 
-    public Item delete(int id) {
-        return null;
+    public boolean delete(int id) {
+        return tracker.delete(id);
     }
 }
