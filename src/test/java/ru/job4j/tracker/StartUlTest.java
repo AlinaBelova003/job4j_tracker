@@ -10,7 +10,6 @@ import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.*;
 
 public class StartUlTest {
-
     @Test
     public void whenCreateItem() {
         Output out = new StubOutput();
