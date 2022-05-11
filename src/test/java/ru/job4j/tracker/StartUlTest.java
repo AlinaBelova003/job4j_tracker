@@ -3,6 +3,8 @@ package ru.job4j.tracker;
 import org.junit.Test;
 
 
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.*;
@@ -20,7 +22,7 @@ public class StartUlTest {
                 new CreateAction(out),
                 new Exit(out)
         };
-        new StartUl(out).init(in, tracker, actions);
+        new StartUl(out).init(in, tracker, List.of(actions));
         assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
 
@@ -35,7 +37,7 @@ public class StartUlTest {
                 new ReplaceAction(out),
                 new Exit(out)
         };
-        new StartUl(out).init(in, tracker, actions);
+        new StartUl(out).init(in, tracker, List.of(actions));
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
 
@@ -51,7 +53,7 @@ public class StartUlTest {
                 new DeleteAction(out),
                 new Exit(out)
         };
-        new StartUl(out).init(in, tracker, actions);
+        new StartUl(out).init(in, tracker, List.of(actions));
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
@@ -67,7 +69,7 @@ public class StartUlTest {
                 new ShowItems(out),
                 new Exit(out)
         };
-        new StartUl(out).init(in, tracker, actions);
+        new StartUl(out).init(in, tracker, List.of(actions));
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
                 "Menu:" + ln
@@ -95,7 +97,7 @@ public class StartUlTest {
                 new FindNameAction(out),
                 new Exit(out)
         };
-        new StartUl(out).init(in, tracker, actions);
+        new StartUl(out).init(in, tracker, List.of(actions));
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
                 "Menu:" + ln
@@ -123,7 +125,7 @@ public class StartUlTest {
                 new FindIdAction(out),
                 new Exit(out)
         };
-        new StartUl(out).init(in, tracker, actions);
+        new StartUl(out).init(in, tracker, List.of(actions));
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
                 "Menu:" + ln
@@ -148,7 +150,7 @@ public class StartUlTest {
         UserAction[] actions = new UserAction[]{
                 new Exit(out)
         };
-        new StartUl(out).init(in, tracker, actions);
+        new StartUl(out).init(in, tracker, List.of(actions));
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
                         "Menu:" + ln
