@@ -26,7 +26,7 @@ public class StartUl {
     private void showMenu(List<UserAction> actions) {
         out.println("Menu:");
          for (int index = 0; index < actions.size(); index++) {
-            out.println(index + ". " + actions.get(index));
+            out.println(index + ". " + actions.get(index).name());
         }
     }
 
