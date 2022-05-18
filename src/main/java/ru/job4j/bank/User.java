@@ -3,28 +3,28 @@ package ru.job4j.bank;
 import java.util.Objects;
 
 public class User {
-    private String requisite;
-    private double balance;
+    private String passport;
+    private String username;
 
-    public User(String requisite, double balance) {
-        this.requisite = requisite;
-        this.balance = balance;
+    public User(String passport, String username) {
+        this.passport = passport;
+        this.username = username;
     }
 
-    public String getRequisite() {
-        return requisite;
+    public String getPassport() {
+        return passport;
     }
 
-    public void setRequisite(String requisite) {
-        this.requisite = requisite;
+    public void setPassport(String passport) {
+        this.passport = passport;
     }
 
-    public double getBalance() {
-        return balance;
+    public String getUsername() {
+        return username;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -35,20 +35,12 @@ public class User {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Account account = (Account) o;
-        return Objects.equals(requisite, account.requisite);
+        User user = (User) o;
+        return Objects.equals(passport, user.passport);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(requisite);
-    }
-
-    @Override
-    public String toString() {
-        return "User{"
-                + "requisite='"
-                + requisite + '\''
-                + ", balance=" + balance + '}';
+        return Objects.hash(passport);
     }
 }
