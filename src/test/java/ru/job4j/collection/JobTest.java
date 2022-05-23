@@ -22,10 +22,10 @@ public class JobTest {
     public void whenComparatorByNameLengthAndDeskPriority() {
         Comparator<Job> cmpNameLnDePriority = new JobDeskByNameLn().thenComparing(new JobDesByPriority());
         int rsl = cmpNameLnDePriority.compare(
-                new Job("Impl", 5),
+                new Job("Impl task", 0),
                 new Job("Fix bug", 1)
         );
-        assertThat(rsl, lessThan(5));
+        assertThat(rsl, lessThan(0));
     }
 
 }
