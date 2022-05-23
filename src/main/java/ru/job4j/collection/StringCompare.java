@@ -10,10 +10,8 @@ public class StringCompare implements Comparator<String> {
         int rsl = 0;
         int length1 = Math.min(left.length(), right.length());
         for (int i = 0; i < length1; i++) {
-            if (left.charAt(i) == right.charAt(i)) {
-                rsl = Character.compare(left.charAt(i), right.charAt(i));
-            } else if (rsl != 0) {
-               rsl = length1;
+            if (left.charAt(i) != right.charAt(i)) {
+                return Character.compare(left.charAt(i), right.charAt(i));
             }
         }
         return Integer.compare(left.length(), right.length());
