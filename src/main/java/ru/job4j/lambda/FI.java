@@ -13,6 +13,7 @@ public class FI {
         };
        Comparator<Attachment> comparator =  (left, right) -> Integer.compare(left.getSize(), right.getSize());
        Comparator<Attachment> comparator1 = (left, right) -> left.getName().compareTo(right.getName());
-       Comparator<String> comparator2 = (left, right) -> Integer.compare(left.length(), right.length());
+       Comparator<String> comparator2 = (left, right) -> Integer.compare(right.length(), left.length());
+
     }
 }
