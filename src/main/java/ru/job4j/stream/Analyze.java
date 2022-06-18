@@ -1,5 +1,6 @@
 package ru.job4j.stream;
 
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,16 +36,26 @@ public class Analyze {
      * @return
      */
     public static List<Tuple> averageScoreBySubject(Stream<Pupil> stream) {
-        return stream.map(s -> new Tuple(s.getName(), s.getSubjects().stream()))
-                .mapToInt()
-                .average()
-                .stream().collect(Collectors.toList());
-
+        return stream.map(s -> new Tuple(s.getName(), s.getSubjects().stream()
+                        .mapToInt(Subject::getScore)
+                        .average()
+                        .orElse(0)
+                ))
+                .collect(Collectors.toList());
     }
 
     /**
      * вычисляет средний балл по каждому ученику.
      * flatMap - для преобразования в поток объектов Subject;
+     * collect.groupingBy - группируем данные имя
+     * Используем конструктор для хранения пары ключ-значение в порядке поступления
+     * Метод коллекторов averagingDouble используется для нахождения среднего значения double, переданного в параметрах
+     * entrySet()- возвращает Set, содержащий записи Map и открывает поток
+     * полученный поток с помощью map() преобразуем в поток объектов класса Tuple, внутри метода создаваём эти объекты
+     * в конструктор мы передаём параметры с помощью методов getKey()- возвращяет ключ записи
+     * и getValue() - возвращает значение записи в Мaр
+     * все соберем в коллекцию List.
+     *
      *
      * @param stream
      * @return
@@ -52,7 +63,11 @@ public class Analyze {
     public static List<Tuple> averageScoreByPupil(Stream<Pupil> stream) {
         return stream
                 .flatMap(subject -> subject.getSubjects().stream())
-                .collect(Collectors.groupingBy(Subject::getName, LinkedHashMap::new, Collectors.averagingDouble()))
+                .collect(Collectors.groupingBy(Subject::getName, LinkedHashMap::new,
+                        Collectors.averagingDouble(Subject::getScore)))
+                .entrySet().stream()
+                .map(value -> new Tuple(value.getKey(), value.getValue()))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -61,7 +76,13 @@ public class Analyze {
      * @return
      */
     public static Tuple bestStudent(Stream<Pupil> stream) {
-        return null;
+        return stream
+                .map(s -> new Tuple(s.getName(), s.getSubjects().stream()
+                        .mapToInt(Subject::getScore)
+                        .sum()
+                ))
+                .max(Comparator.comparing(Tuple::))
+                .orElse(0);
     }
 
     /**
@@ -71,7 +92,14 @@ public class Analyze {
      * @return
      */
     public static Tuple bestSubject(Stream<Pupil> stream) {
-        return null;
+        return stream
+                .flatMap(s -> s.getSubjects().stream())
+                .collect(Collectors.groupingBy(Subject::getName,
+                        LinkedHashMap::new,
+                        Collectors.summingDouble(Subject::getScore)))
+                .entrySet().stream()
+                .map(value -> new Tuple(value.getKey(), value.getValue()))
+                .max(Comparator.comparing(Tuple::))
+                .orElse(0);
     }
-
 }
