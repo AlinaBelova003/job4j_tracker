@@ -3,7 +3,10 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tracker {
+/**
+ * Данные этого класса хранятся в памяти
+ */
+public class MemTracker implements Store {
     private final List<Item> items = new ArrayList<>();
     private int ids = 1;
 
@@ -60,5 +63,10 @@ public class Tracker {
             items.remove(index);
         }
         return rsl;
+    }
+
+    @Override
+    public void close() throws Exception {
+
     }
 }

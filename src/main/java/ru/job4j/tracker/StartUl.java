@@ -9,7 +9,7 @@ public class StartUl {
         this.out = out;
     }
 
-    public void init(Input input, Tracker tracker, List<UserAction> actions) {
+    public void init(Input input, Store tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
@@ -25,20 +25,29 @@ public class StartUl {
 
     private void showMenu(List<UserAction> actions) {
         out.println("Menu:");
-         for (int index = 0; index < actions.size(); index++) {
+        for (int index = 0; index < actions.size(); index++) {
             out.println(index + ". " + actions.get(index).name());
         }
     }
 
-    public static void main(String[]args) {
+    public static void main(String[] args) {
         Output output = new ConsoleOutput();
-        Input input = new ValidateInput(output, new ConsoleInput());
-        Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new CreateAction(output), new ShowItems(output),
-                new ReplaceAction(output), new DeleteAction(output),
-                new FindIdAction(output), new FindNameAction(output), new Exit(output)
-        };
-        new StartUl(output).init(input, tracker, List.of(actions));
+        Input input = new ValidateInput(
+                output, new ConsoleInput()
+        );
+        try (Store tracker = new SqlTracker()) {
+            List<UserAction> actions = List.of(
+                    new CreateAction(output),
+                    new ReplaceAction(output),
+                    new DeleteAction(output),
+                    new FindAllAction(output),
+                    new FindByIdAction(output),
+                    new FindByNameAction(output),
+                    new Exit()
+            );
+            new StartUl().init(input, tracker, actions);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

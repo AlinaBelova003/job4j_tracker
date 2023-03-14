@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -18,7 +17,7 @@ public class StartUlTest {
         Input in = new StubInput(
                 new String[]{"0", "Item name", "1"}
         );
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         ArrayList<UserAction> actions = new ArrayList<>(
                 Arrays.asList(new CreateAction(out), new Exit(out)));
         new StartUl(out).init(in, tracker, actions);
@@ -28,7 +27,7 @@ public class StartUlTest {
     @Test
     public void whenReplaceItem() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
         Input in = new StubInput(new String[]{"0", String.valueOf(item.getId()), "New item name", "1"});
@@ -41,7 +40,7 @@ public class StartUlTest {
     @Test
     public void whenDeleteItem() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         Item item = tracker.add(new Item("Deleted item"));
         Input in = new StubInput(
                 new String[]{"0", String.valueOf(item.getId()), "1"}
@@ -55,13 +54,13 @@ public class StartUlTest {
     @Test
     public void whenFindAllItemTestOutputIsSuccessfully() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         Item one = tracker.add(new Item("test1"));
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
         ArrayList<UserAction> actions = new ArrayList<>(
-                Arrays.asList(new ShowItems(out), new Exit(out)));
+                Arrays.asList(new FindAllAction(out), new Exit(out)));
         new StartUl(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -80,14 +79,14 @@ public class StartUlTest {
     @Test
     public void whenFindNameAction() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         String name = "test1";
         Item one = tracker.add(new Item("test1"));
         Input in = new StubInput(
                 new String[] {"0", name, "1"}
         );
         ArrayList<UserAction> actions = new ArrayList<>(
-                Arrays.asList(new FindNameAction(out), new Exit(out)));
+                Arrays.asList(new FindByNameAction(out), new Exit(out)));
         new StartUl(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -106,14 +105,14 @@ public class StartUlTest {
     @Test
     public void whenFindIdAction() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         Item one = tracker.add(new Item("test1"));
         String replaceName = "New Test Name";
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(one.getId()), "1"}
         );
         ArrayList<UserAction> actions = new ArrayList<>(
-                Arrays.asList(new FindIdAction(out), new Exit(out)));
+                Arrays.asList(new FindByIdAction(out), new Exit(out)));
         new StartUl(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -135,7 +134,7 @@ public class StartUlTest {
         Input in = new StubInput(
                 new String[] {"2", "0"}
         );
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         ArrayList<UserAction> actions = new ArrayList<>(
                 Arrays.asList(new Exit(out)));
         new StartUl(out).init(in, tracker, actions);
