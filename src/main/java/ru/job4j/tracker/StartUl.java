@@ -43,9 +43,9 @@ public class StartUl {
                     new FindAllAction(output),
                     new FindByIdAction(output),
                     new FindByNameAction(output),
-                    new Exit()
+                    new Exit(output)
             );
-            new StartUl().init(input, tracker, actions);
+            new StartUl(output).init(input, tracker, actions);
         } catch (Exception e) {
             e.printStackTrace();
         }
