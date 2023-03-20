@@ -1,11 +1,13 @@
 package ru.job4j.tracker;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.StringJoiner;
 
 /**
  * Класс SqlTracker будет подключаться к базе данных, создавать в ней записи, редактировать, читать и удалять.
@@ -46,7 +48,7 @@ public class SqlTracker implements Store {
      */
     @Override
     public Item add(Item item) {
-        try (PreparedStatement statement = cn.prepareStatement("insert into Item (name, created) values (?, ?)",
+        try (PreparedStatement statement = cn.prepareStatement("insert into Items (name, created) values (?, ?)",
                              Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, item.getName());
             statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
@@ -66,7 +68,7 @@ public class SqlTracker implements Store {
     public boolean replace(int id, Item item) {
         boolean result = false;
         try (PreparedStatement statement =
-                     cn.prepareStatement("update item set name = ?, created = ? where id = ?")) {
+                     cn.prepareStatement("update items set name = ?, created = ? where id = ?")) {
             statement.setString(1, item.getName());
             statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             statement.setInt(3, id);
@@ -81,7 +83,7 @@ public class SqlTracker implements Store {
     public boolean delete(int id) {
         boolean result = false;
         try (PreparedStatement statement =
-                     cn.prepareStatement("delete from item where id = ?")) {
+                     cn.prepareStatement("delete from items where id = ?")) {
             statement.setInt(1, id);
             result = statement.executeUpdate() > 0;
         } catch (Exception e) {
@@ -93,7 +95,7 @@ public class SqlTracker implements Store {
       @Override
     public List<Item> findAll() {
         List<Item> item = new ArrayList<>();
-        try (PreparedStatement statement = cn.prepareStatement("select * from item")) {
+        try (PreparedStatement statement = cn.prepareStatement("select * from items")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     item.add(new Item(
@@ -112,7 +114,7 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findByName(String key) {
         List<Item> itemName = new ArrayList<>();
-        try (PreparedStatement statement = cn.prepareStatement("Select * from item where name = ?")) {
+        try (PreparedStatement statement = cn.prepareStatement("Select * from items where name = ?")) {
             statement.setString(1, key);
            try (ResultSet resultSet = statement.executeQuery()) {
                while (resultSet.next()) {
@@ -130,7 +132,7 @@ public class SqlTracker implements Store {
     @Override
     public Item findById(int id) {
        Item item = new Item();
-        try (PreparedStatement statement = cn.prepareStatement("Select * from item where id = ?")) {
+        try (PreparedStatement statement = cn.prepareStatement("Select * from items where id = ?")) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
@@ -152,4 +154,28 @@ public class SqlTracker implements Store {
             cn.close();
         }
     }
+
+    /**
+     * Properties постоянный набор свойств. Свойства можно сохранить в поток или загрузить из потока.
+     * Чтение из БД tracker будет производиться из класса настроек
+     */
+    public static void main(String[] args) throws Exception {
+        Properties cfg = new Properties();
+        try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
+            cfg.load(in);
+        }
+        SqlTracker tracker = new SqlTracker();
+        Item  item = new Item(1, "Alina", LocalDateTime.now());
+        Item item1 = new Item(2, "Vera", LocalDateTime.now());
+        Item item2 = new Item(3, "Vlad", LocalDateTime.now());
+        System.out.println(tracker.add(item));
+        System.out.println(tracker.add(item1));
+        System.out.println(tracker.add(item2));
+        System.out.println(tracker.replace(2, item));
+        System.out.println(tracker.findAll());
+        System.out.println(tracker.findByName("Vlad"));
+        System.out.println(tracker.findById(2));
+        System.out.println(tracker.delete(1));
+    }
+
 }
