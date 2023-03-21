@@ -119,7 +119,8 @@ public class SqlTracker implements Store {
            try (ResultSet resultSet = statement.executeQuery()) {
                while (resultSet.next()) {
                    itemName.add(new Item(
-                           resultSet.getString(key)
+                           resultSet.getString("name")
+
                    ));
                }
            }
