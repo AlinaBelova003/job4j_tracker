@@ -1,0 +1,9 @@
+2023-03-22 20:28:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEMS" not found (this database is empty); SQL statement:
+insert into Items (name, created) values (?, ?) [42104-214]
+2023-03-22 20:28:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEMS" not found (this database is empty); SQL statement:
+Select * from items where id = ? [42104-214]
+2023-03-22 20:28:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEMS" not found (this database is empty); SQL statement:
+delete from items [42104-214]
