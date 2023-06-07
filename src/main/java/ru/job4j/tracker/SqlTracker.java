@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.StringJoiner;
+import java.util.*;
 
 /**
  * Класс SqlTracker будет подключаться к базе данных, создавать в ней записи, редактировать, читать и удалять.
@@ -177,5 +174,22 @@ public class SqlTracker implements Store {
         System.out.println(tracker.findByName("Vlad"));
         System.out.println(tracker.findById(2));
         System.out.println(tracker.delete(1));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SqlTracker tracker = (SqlTracker) o;
+        return Objects.equals(cn, tracker.cn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cn);
     }
 }
