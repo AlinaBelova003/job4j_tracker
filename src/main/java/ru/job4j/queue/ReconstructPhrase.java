@@ -26,9 +26,9 @@ public class ReconstructPhrase {
 
     private String getDescendingElements() {
         StringBuilder builder = new StringBuilder();
-        Iterator<Character> iterator = descedingElement.descendingIterator();
-        while (iterator.hasNext()) {
-            builder.append(iterator.next());
+        int size = descedingElement.size();
+        for (int i = 0; i < size; i++) {
+            builder.append(descedingElement.pollLast());
         }
         return builder.toString();
     }
@@ -37,7 +37,4 @@ public class ReconstructPhrase {
         return getEvenElements() + getDescendingElements();
     }
 
-    public static void main(String[] args) {
-
-    }
 }
