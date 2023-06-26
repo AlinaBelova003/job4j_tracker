@@ -9,6 +9,9 @@ public class Comment {
         this.user = user;
     }
 
+    public Comment(String toString) {
+    }
+
     public String getText() {
         return text;
     }
@@ -23,10 +26,5 @@ public class Comment {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
     }
 }
