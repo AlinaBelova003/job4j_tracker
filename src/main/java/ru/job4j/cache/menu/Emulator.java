@@ -67,5 +67,4 @@ public class Emulator {
        emulator.loadFile("Names.txt");
        emulator.getFile("Names.txt");
     }
-
 }
