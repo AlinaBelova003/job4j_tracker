@@ -12,6 +12,13 @@ public abstract class AbstractCache<K, V> {
         cache.put(key, softReference);
     }
 
+    /**
+     * Проверяем наличие объекта в кэше и если его нет, то загружаем.
+     * Получаем SoftReference ссылку по значению ключа
+     * Если ссылка есть в памяти, то по мягкой ссылки получаем значение и обновляем данные в кэши
+     * @param key имя файла
+     * @return значение объекта или создаем новый объект
+     */
     public final V get(K key) {
         SoftReference<V> softReference = cache.get(key);
         if (softReference != null) {
