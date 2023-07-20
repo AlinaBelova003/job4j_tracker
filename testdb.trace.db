@@ -7,3 +7,6 @@ Select * from items where id = ? [42104-214]
 2023-03-22 20:28:16 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEMS" not found (this database is empty); SQL statement:
 delete from items [42104-214]
+2023-07-19 15:48:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "DATABASECHANGELOGLOCK" not found (this database is empty); SQL statement:
+SELECT COUNT(*) FROM DATABASECHANGELOGLOCK [42104-214]
