@@ -1,9 +1,6 @@
 package ru.job4j.cache;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 
 public class DirFileCache extends AbstractCache<String, String> {
@@ -24,7 +21,7 @@ public class DirFileCache extends AbstractCache<String, String> {
     @Override
     protected String load(String key) {
         StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(key))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(String.format("%s%s%s", cacheDir, File.separator, key)))) {
             while (reader.ready()) {
                 stringBuilder.append(reader.readLine());
             }
@@ -33,12 +30,5 @@ public class DirFileCache extends AbstractCache<String, String> {
             e.printStackTrace();
         }
         return stringBuilder.toString();
-    }
-
-    public static void main(String[] args) {
-        DirFileCache dirFileCache = new DirFileCache("C:\\projects\\job4j_tracker\\data");
-        String fileContent = dirFileCache.get("%s/%s".formatted(dirFileCache.cacheDir, "Names.txt"));
-        System.out.println(fileContent);
-
     }
 }
