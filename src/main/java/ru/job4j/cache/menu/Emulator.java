@@ -20,7 +20,9 @@ public class Emulator {
         String fileName = scanner.nextLine();
         while (!"exit".equals(fileName)) {
             System.out.println(dirFileCache.get(fileName));
+            System.out.println("Если работа закончена введите exit");
             fileName = scanner.nextLine();
+
         }
     }
 }
