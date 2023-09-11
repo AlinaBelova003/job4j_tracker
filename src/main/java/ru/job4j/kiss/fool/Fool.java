@@ -9,15 +9,7 @@ public class Fool {
         var io = new Scanner(System.in);
 
         while (startAt < 100) {
-            if (startAt % 3 == 0 && startAt % 5 == 0) {
-                System.out.println("FizzBuzz");
-            } else if (startAt % 3 == 0) {
-                System.out.println("Fizz");
-            } else if (startAt % 5 == 0) {
-                System.out.println("Buzz");
-            } else {
-                System.out.println(startAt);
-            }
+            Logic.checkAnswer(startAt);
             startAt++;
             String answer = Logic.checkAnswer(startAt);
             if (!answer.equals(io.nextLine())) {
@@ -29,24 +21,28 @@ public class Fool {
     }
 
     static class Logic {
-    /**
-     * Этот код анализирует ответы пользователя
-     * @param startAt счетчик
-     * @return либо String надпись, либо число
-     */
-    private static String checkAnswer(int startAt) {
-        String value;
-        if (startAt % 3 == 0 && startAt % 5 == 0) {
-            value = "FizzBuzz";
-        } else if (startAt % 3 == 0) {
-            value = "Fizz";
-        } else if (startAt % 5 == 0) {
-            value = "Buzz";
-        } else {
-            value = String.valueOf(startAt);
+        /**
+         * Этот код анализирует ответы пользователя
+         *
+         * @param startAt счетчик
+         * @return либо String надпись, либо число
+         */
+        private static String checkAnswer(int startAt) {
+            String value;
+            if (startAt % 3 == 0 && startAt % 5 == 0) {
+                value = "FizzBuzz";
+                System.out.println(value);
+            } else if (startAt % 3 == 0) {
+                value = "Fizz";
+                System.out.println(value);
+            } else if (startAt % 5 == 0) {
+                value = "Buzz";
+                System.out.println(value);
+            } else {
+                value = String.valueOf(startAt);
+                System.out.println(value);
+            }
+            return value;
         }
-        return value;
-    }
-
     }
 }
