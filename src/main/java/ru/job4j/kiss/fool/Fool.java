@@ -19,8 +19,8 @@ public class Fool {
                 System.out.println(startAt);
             }
             startAt++;
-            String answer = checkAnswer(io.nextLine(), startAt);
-            if (answer == null) {
+            String answer = Logic.checkAnswer(startAt);
+            if (!answer.equals(io.nextLine())) {
                 System.out.println("Ошибка. Начинай снова.");
                 startAt = 0;
             }
@@ -28,30 +28,25 @@ public class Fool {
         }
     }
 
+    static class Logic {
     /**
      * Этот код анализирует ответы пользователя
-     * @param answer ответы
      * @param startAt счетчик
-     * @return либо String, либо число
+     * @return либо String надпись, либо число
      */
-    private static String checkAnswer(String answer, int startAt) {
+    private static String checkAnswer(int startAt) {
+        String value;
         if (startAt % 3 == 0 && startAt % 5 == 0) {
-            return stringCheck(answer, "FizzBuzz");
+            value = "FizzBuzz";
         } else if (startAt % 3 == 0) {
-             return stringCheck(answer, "Fizz");
+            value = "Fizz";
         } else if (startAt % 5 == 0) {
-             return stringCheck(answer, "Buzz");
+            value = "Buzz";
         } else {
-            return numberCheck(answer, String.valueOf(startAt));
+            value = String.valueOf(startAt);
         }
+        return value;
     }
 
-    private static String stringCheck(String answer, String fizzBuzz) {
-        return fizzBuzz.equals(answer) ? fizzBuzz : null;
     }
-
-    private static String numberCheck(String answer, String fizzBuzz) {
-        return answer.equals(fizzBuzz) ? fizzBuzz : null;
-    }
-
 }
