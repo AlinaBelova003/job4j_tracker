@@ -9,7 +9,7 @@ public class Fool {
         var io = new Scanner(System.in);
 
         while (startAt < 100) {
-            Logic.checkAnswer(startAt);
+            Logic.outputComputer(startAt);
             startAt++;
             String answer = Logic.checkAnswer(startAt);
             if (!answer.equals(io.nextLine())) {
@@ -31,18 +31,26 @@ public class Fool {
             String value;
             if (startAt % 3 == 0 && startAt % 5 == 0) {
                 value = "FizzBuzz";
-                System.out.println(value);
             } else if (startAt % 3 == 0) {
                 value = "Fizz";
-                System.out.println(value);
             } else if (startAt % 5 == 0) {
                 value = "Buzz";
-                System.out.println(value);
             } else {
                 value = String.valueOf(startAt);
-                System.out.println(value);
             }
             return value;
+        }
+
+        private static void outputComputer(int startAt) {
+            if (startAt % 3 == 0 && startAt % 5 == 0) {
+                System.out.println("FizzBuzz");
+            } else if (startAt % 3 == 0) {
+                System.out.println("Fizz");
+            } else if (startAt % 5 == 0) {
+                System.out.println("Buzz");
+            } else {
+                System.out.println(startAt);
+            }
         }
     }
 }
