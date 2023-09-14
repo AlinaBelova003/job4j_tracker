@@ -9,8 +9,7 @@ public class Fool {
         var io = new Scanner(System.in);
 
         while (startAt < 100) {
-            Logic.outputComputer(startAt);
-            startAt++;
+            System.out.println(Logic.checkAnswer(startAt++));
             String answer = Logic.checkAnswer(startAt);
             if (!answer.equals(io.nextLine())) {
                 System.out.println("Ошибка. Начинай снова.");
@@ -27,7 +26,7 @@ public class Fool {
          * @param startAt счетчик
          * @return либо String надпись, либо число
          */
-        private static String checkAnswer(int startAt) {
+        public static String checkAnswer(int startAt) {
             String value;
             if (startAt % 3 == 0 && startAt % 5 == 0) {
                 value = "FizzBuzz";
@@ -39,18 +38,6 @@ public class Fool {
                 value = String.valueOf(startAt);
             }
             return value;
-        }
-
-        private static void outputComputer(int startAt) {
-            if (startAt % 3 == 0 && startAt % 5 == 0) {
-                System.out.println("FizzBuzz");
-            } else if (startAt % 3 == 0) {
-                System.out.println("Fizz");
-            } else if (startAt % 5 == 0) {
-                System.out.println("Buzz");
-            } else {
-                System.out.println(startAt);
-            }
         }
     }
 }
