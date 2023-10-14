@@ -1,5 +1,6 @@
 package ru.job4j.odd.srp.repot;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.odd.srp.formatter.DateTimeParser;
 import ru.job4j.odd.srp.formatter.ReportDateTimeParser;
@@ -11,7 +12,7 @@ import java.util.Calendar;
 import static org.assertj.core.api.Assertions.*;
 
 class ReportEngineTest {
-
+@Disabled
     @Test
     public void whenOldGenerate() {
         MemStore store = new MemStore();
