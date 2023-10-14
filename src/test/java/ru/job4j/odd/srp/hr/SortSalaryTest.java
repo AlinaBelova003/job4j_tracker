@@ -17,11 +17,11 @@ class SortSalaryTest {
         List<Employee> employeeList = List.of(new Employee("Ivan", calendar, calendar, 30000),
                 new Employee("Alex", calendar, calendar, 25000),
                 new Employee("Vladimir", calendar, calendar, 40000));
-       Comparator<Employee> result = SortSalary.sortSalaryReversed(employeeList);
-       List<Employee> expected = List.of(new Employee("Alex", calendar, calendar, 25000),
-               new Employee("Ivan", calendar, calendar, 30000),
-               new Employee("Vladimir", calendar, calendar, 40000));
-       assertThat(result).isEqualTo(expected);
+        List<Employee> result = SortSalary.sortSalaryReversed(employeeList);
+        List<Employee> expected = List.of(new Employee("Alex", calendar, calendar, 25000),
+                new Employee("Ivan", calendar, calendar, 30000),
+                new Employee("Vladimir", calendar, calendar, 40000));
+        assertThat(result).isEqualTo(expected);
     }
 
 }

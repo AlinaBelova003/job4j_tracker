@@ -1,4 +1,4 @@
-package ru.job4j.odd.srp.hr;
+package ru.job4j.odd.srp.repot;
 
 import ru.job4j.odd.srp.model.Employee;
 import ru.job4j.odd.srp.repot.Report;

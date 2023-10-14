@@ -20,7 +20,7 @@ public class ReportEngine implements Report {
     @Override
     public String generate(Predicate<Employee> predicate) {
         StringBuilder text = new StringBuilder();
-        text.append("Name; Hired; Fired; Salary")
+        text.append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator());
         for (Employee employee : store.findBy(predicate)) {
             text.append(employee.getName()).append(" ")
