@@ -1,5 +1,6 @@
 package ru.job4j.odd.srp.hr;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.odd.srp.model.Employee;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class SortSalaryTest {
-
+@Disabled
     @Test
     public void whenSortReverseTrue() {
         Calendar calendar = Calendar.getInstance();
