@@ -1,7 +1,9 @@
 package ru.job4j.odd.srp.currency;
 
 public class InMemoryCurrencyConverter implements CurrencyConverter {
-
+    /**
+     * Currencies_Count - это количество всех наших валют(0, 1. 2)
+     */
     private static final int CURRENCIES_COUNT = Currency.values().length;
     private final double[][] conversationTable = new double[CURRENCIES_COUNT][CURRENCIES_COUNT];
 

@@ -23,10 +23,10 @@ public class ReportEngine implements Report {
         text.append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator());
         for (Employee employee : store.findBy(predicate)) {
-            text.append(employee.getName()).append(" ")
-                    .append(dateTimeParser.parser(employee.getFired())).append(" ")
-                    .append(dateTimeParser.parser(employee.getHired())).append(" ")
-                    .append(employee.getSalary())
+            text.append(employee.getName()).append(";")
+                    .append(dateTimeParser.parser(employee.getFired())).append(";")
+                    .append(dateTimeParser.parser(employee.getHired())).append(";")
+                    .append(employee.getSalary()).append(";")
                     .append(System.lineSeparator());
         }
         return text.toString();

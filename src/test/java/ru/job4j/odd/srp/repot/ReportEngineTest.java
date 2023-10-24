@@ -12,24 +12,25 @@ import java.util.Calendar;
 import static org.assertj.core.api.Assertions.*;
 
 class ReportEngineTest {
-@Disabled
+
     @Test
-    public void whenOldGenerate() {
+    void whenReportProgrammers() {
+        Calendar calendar = Calendar.getInstance();
+        Employee employee = new Employee("Vera", calendar, calendar, 40000);
         MemStore store = new MemStore();
-        Calendar now = Calendar.getInstance();
-        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(employee);
+
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
-        store.add(worker);
-        Report engine = new ReportEngine(store, parser);
-        StringBuilder expect = new StringBuilder()
-                .append("Name; Hired; Fired; Salary;")
+        ReportEngine reportEngine = new ReportEngine(store, parser);
+        StringBuilder expected = new StringBuilder();
+        expected.append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
-                .append(worker.getName()).append(" ")
-                .append(parser.parser(worker.getHired())).append(" ")
-                .append(parser.parser(worker.getFired())).append(" ")
-                .append(worker.getSalary())
+                .append(employee.getName()).append(";")
+                .append(parser.parser(employee.getFired())).append(";")
+                .append(parser.parser(employee.getHired())).append(";")
+                .append(employee.getSalary()).append(";")
                 .append(System.lineSeparator());
-        assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
+        assertThat(reportEngine.generate(tr -> true)).isEqualTo(expected.toString());
     }
 
 }
